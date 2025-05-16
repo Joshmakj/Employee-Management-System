@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Management</title>
+    <link rel="stylesheet" href="{% static 'css/salary_management.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        {% comment %} {% include 'sidebar.html' %} {% endcomment %}
+
+        <main class="main-content">
+            <h1>Salary Management</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Current Salary</th>
+                        <th>Hike (%)</th>
+                        <th>New Salary</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.id }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.current_salary }}</td>
+                        <form method="post" action="{% url 'update-salary' employee.id %}">
+                            {% csrf_token %}
+                            <td><input type="number" name="hike" step="0.1" required></td>
+                            <td>
+                                {% if employee.new_salary %}
+                                    {{ employee.new_salary }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td><button type="submit">Apply</button></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

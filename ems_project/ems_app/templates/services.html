@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services - EMS Portal</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+<div class="wrapper">
+<main class="section">
+  <h2>Our Services</h2>
+  <div class="service-grid">
+    <div class="service-card">Employee & Student Registration</div>
+    <div class="service-card">Attendance & Leave Management</div>
+    <div class="service-card">Salary & Fee Tracking</div>
+    <div class="service-card">Performance Reports</div>
+    <div class="service-card">ID Card Generation</div>
+    <div class="service-card">Admin Dashboard & Analytics</div>
+  </div>
+</main>
+</div>
+
+{% include 'partials/footer.html' %}
+
+</body>
+</html>

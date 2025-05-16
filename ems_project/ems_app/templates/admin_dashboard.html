@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>EMS Admin</h2>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="{% url 'add-employee' %}"><i class="fas fa-user-plus"></i> Add Employee</a></li>
+
+                    <li><a href="{% url 'employee_list' %}"><i class="fas fa-users"></i> Employee List</a></li>
+                    <li><a href="{% url 'approve_leave' %}"><i class="fas fa-envelope-open-text"></i> Approve Leave</a></li>
+                    <li><a href="{% url 'salary-management' %}"><i class="fas fa-money-check-alt"></i> Salary Management</a></li>
+                    <li><a href="{% url 'id-cards' %}"><i class="fas fa-id-badge"></i> Generate ID Card</a></li>
+                    <li><li><a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>Admin Dashboard</h1>
+            <div class="cards">
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h3>Employees</h3>
+                        <p>48</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <h3>Leave Requests</h3>
+                        <p>5 Pending</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-sack-dollar"></i>
+                    <div>
+                        <h3>Salary Updates</h3>
+                        <p>3 This Month</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <a href="{% url 'add-employee' %}" class="btn">Add Employee</a>

@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee ID Cards</title>
+    <link rel="stylesheet" href="{% static 'css/generateid_cards.css' %}">
+</head>
+<body>
+    <h1>All Employee ID Cards</h1>
+    <div class="card-container">
+        {% for emp in employees %}
+        <div class="id-card">
+            <div class="header">Company Name</div>
+            <div class="photo">
+                <img src="{% if emp.photo %}{{ emp.photo.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}" alt="Photo">
+            </div>
+            <div class="details">
+                <p><strong>ID:</strong> {{ emp.id }}</p>
+                <p><strong>Name:</strong> {{ emp.name }}</p>
+                <p><strong>Department:</strong> {{ emp.department }}</p>
+                <p><strong>Email:</strong> {{ emp.email }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

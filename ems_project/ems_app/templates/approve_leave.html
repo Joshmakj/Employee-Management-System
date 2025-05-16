@@ -1,0 +1,51 @@
+<!-- templates/approve_leave.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Leave Requests</title>
+    <link rel="stylesheet" href="{% static 'css/approve_leave.css' %}">
+</head>
+<body>
+
+<h2>Approve Leave Requests</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for leave in leave_requests %}
+      <tr>
+        <td>{{ leave.employee.username }}</td>
+        <td>{{ leave.start_date }}</td>
+        <td>{{ leave.end_date }}</td>
+        <td>{{ leave.reason }}</td>
+        <td>{{ leave.status }}</td>
+        <td>
+          {% if leave.status == 'Pending' %}
+            <a href="{% url 'change_leave_status' leave.id 'Approved' %}" class="btn approve">Approve</a>
+            <a href="{% url 'change_leave_status' leave.id 'Rejected' %}" class="btn reject">Reject</a>
+          {% else %}
+            {{ leave.status }}
+          {% endif %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="6">No leave requests found.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>

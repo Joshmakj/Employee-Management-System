@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee List - Employee Management System</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Static CSS -->
+  <link rel="stylesheet" href="{% static 'css/employee-list.css' %}" />
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Employee List</h2>
+
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Designation</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Date of Joining</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employees %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ employee.empId }}</td>
+          <td>{{ employee.empName }}</td>
+          <td>{{ employee.department }}</td>
+          <td>{{ employee.designation }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.phone }}</td>
+          <td>{{ employee.joiningDate|date:"Y-m-d" }}</td>
+          <td>{{ employee.salary }}</td>
+          <td>
+            <a href="{% url 'view_employee' employee.id %}" class="btn btn-info btn-sm">View</a>
+            <a href="{% url 'edit_employee' employee.id %}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger btn-sm"
+               onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="10" class="text-center">No employees found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <a href="{% url 'add-employee' %}" class="btn btn-primary mt-3">Add New Employee</a>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary mt-3 ms-2">Back to Dashboard</a>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
